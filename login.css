@@ -1,0 +1,159 @@
+@import url(./styledefault.css);
+
+.main{
+    background-color: #fff;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 100px 1fr 1fr;
+}
+
+.main .header-section{
+    height: 100px;
+    background-color: var(--kulayblack);
+    color: #fff;
+}
+
+.main .header-section .header-main{
+    display: flex;
+    align-items: center;
+    width: 70%;
+    margin: auto;
+    height: 100px;
+}
+
+.main .header-section .header-main .logo{
+    display: flex;
+    flex: 1;
+}
+
+.main .header-section .header-main .logo img{
+    width: 180px;
+    height: 100px;
+}
+
+.main .header-section .header-main .logo h1{
+    display: inline;
+    padding: 0;
+    margin-top: 40px;
+}
+
+.main .header-section .header-main .follow{
+    display: flex;
+    align-items: center;
+}
+
+.main .header-section .header-main .follow li{
+    font-size: 25px;
+    margin: 0 5px;
+}
+
+.main .header-section .header-main .follow img{
+    height: 25px;
+}
+
+.main .login-main{
+    height: 70vh;
+    width: 70%;
+    margin: auto;
+    background-color: var(--kulaygray);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+}
+
+.main .login-main .hero-image{
+    text-align: center;
+    align-items: center;
+}
+
+.main .login-main .hero-image img{
+    width: 50%;
+    height: 200px;
+    margin: 35% 25% 0 25%;
+    padding: 0;
+}
+
+
+.main .login-main .hero-image p{
+    color: #fff;
+    font-size: 2em;
+    padding: 0;
+    margin: 0;
+    font-weight: bold;
+}
+
+.main .login-main .hero-image p span{
+    color: var(--kulayblack);
+    font-size: 1.2em;
+}
+
+.main .login-main .login-section{
+    align-items: center;
+}
+
+.main .login-main .login-section .login-box {
+    width: 80%;
+    height: 65%;
+    margin: 12% auto 12% auto;
+    padding: 50px;
+    background-color: #fff;
+}
+
+.main .login-main .login-section .login-box form{
+    margin-top: 10%;
+}
+
+.main .login-main .login-section .login-box input[type=text], input[type=password]{
+    width: 100%;
+    padding: 15px;
+    margin: 5px auto 5px auto;
+    display: inline-block;
+    border: 1px black solid;
+    background: #f1f1f1;
+}
+
+.main .login-main .login-section .login-box form a p{
+    padding: 0;
+    margin: 0;
+    text-align: right;
+}
+
+.main .login-main .login-section .login-box form button{
+    padding: 5px;
+    font-size: 1.6em;
+    width: 70%;
+    margin-left: 15%;
+    margin-top: 10px;
+    background-color: var(--kulaygray);
+    color: #fff;
+    border: none;
+}
+
+.main .login-main .login-section .login-box form button:hover{
+    cursor: pointer;
+}
+
+.main .login-main .login-section .login-box form p{
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+/* Footer */
+/* Footer */
+/* Footer */
+
+.main .footer{
+    height: 19.7vh;
+    background-color: var(--kulayblack);
+}
+
+.main .footer .footer-section{
+    display: flex;
+    justify-content: space-around;
+}
+
+.main .footer .footer-section > div{
+    text-align: center;
+    color: var(--white);
+}

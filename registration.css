@@ -1,0 +1,201 @@
+@import url(./styledefault.css);
+
+.main{
+    background-color: var(--white);
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 100px 1fr 1fr;
+}
+
+.main .header-section{
+    height: 100px;
+    background-color: var(--kulayblack);
+    color: var(--white);
+}
+
+.main .header-section .header-main{
+    display: flex;
+    align-items: center;
+    width: 70%;
+    margin: auto;
+    height: 100px;
+}
+
+.main .header-section .header-main .logo{
+    display: flex;
+    flex: 1;
+}
+
+.main .header-section .header-main .logo img{
+    width: 180px;
+    height: 100px;
+}
+
+.main .header-section .header-main .logo h1{
+    display: inline;
+    padding: 0;
+    margin-top: 40px;
+}
+
+.main .header-section .header-main .follow{
+    display: flex;
+    align-items: center;
+}
+
+.main .header-section .header-main .follow li{
+    font-size: 25px;
+    margin: 0 5px;
+}
+
+.main .header-section .header-main .follow img{
+    height: 25px;
+}
+
+/* SignUp Section */
+/* SignUp Section */
+/* SignUp Section */
+
+.main .signup-section{
+    width: 70%;
+    height: 70vh;
+    margin: auto;
+    background-color: var(--kulaygray);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main .signup-section p {
+    color: var(--white);
+}
+
+.main .signup-section .signup-box{
+    width: 70%;
+    margin: auto;
+    text-align: center;
+}
+
+.main .signup-section .signup-box form .user-details{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    text-align: left;
+}
+
+.main .signup-section .signup-box form .user-details .input-box{
+   width: calc(100% / 2 - 20px);
+   margin: 10px;
+}
+
+.main .signup-section .signup-box form .user-details .input-box input{
+    width: 100%;
+    padding: 15px;
+    font-size: 1.2em;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    outline: none;
+    border-radius: 5px;
+    border: 1px var(--white) solid;
+    border-bottom-width: 3px;
+    transition: all 0.5ms;
+}
+
+.main .signup-section .signup-box form .user-details .input-box input:focus,
+.main .signup-section .signup-box form .user-details .input-box input:valid{
+    border-color: var(--kulayblack);
+}
+
+.main .signup-section .signup-box form .user-details .input-box .details{
+    font-weight: 700;
+    margin-bottom: 10px;
+    display: block;
+    color: var(--white);
+    
+}
+
+.main .signup-box .gender-details .gender-title{
+    font-weight: 700;
+    color: var(--white);
+    margin-left: 10px;
+}
+.main .signup-box .gender-details{
+    text-align: left;
+}
+
+.main .signup-box .gender-details .category{
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.main .signup-box .gender-details .category label{
+    display: flex;
+    align-items: center;
+    background-color: var(--white);
+    border: var(--kulayblack) 1px solid;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.main .signup-box .gender-details .category .dot{
+    height: 18px;
+    width: 18px;
+    margin-right: 15px;
+    border-radius: 50%;
+    background-color: var(--white);
+    border: 3px var(--kulayblack) solid;
+    transition: all 0.5ms;
+}
+
+#dot-1:checked ~ .category label .one,
+#dot-2:checked ~ .category label .two,
+#dot-3:checked ~ .category label .three{
+    border-color: var(--kulayblack);
+    background-color: var(--kulayblack);
+}
+
+.main .signup-section .signup-box form input[type="radio"]{
+    display: none;
+}
+
+.main .signup-section .signup-box form .button{
+    padding: 5px;
+    font-size: 1.6em;
+    font-weight: 700;
+    width: 50%;
+    background-color: var(--kulaygray);
+    color: var(--kulaygray);
+    background-color: var(--white);
+    border: 1px var(--kulayblack) solid;
+    border-radius: 20px;
+}
+
+.main .signup-section .signup-box form .button:hover{
+    cursor: pointer;
+    background-color: var(--kulayblack);
+    color: var(--white);
+    transition: ease-in 0.8ms;
+}
+
+/* Footer */
+/* Footer */
+/* Footer */
+
+
+.main .footer{
+    height: 19.7vh;
+    background-color: var(--kulayblack);
+}
+
+.main .footer .footer-section{
+    display: flex;
+    justify-content: space-around;
+}
+
+.main .footer .footer-section > div{
+    text-align: center;
+    color: var(--white);
+}

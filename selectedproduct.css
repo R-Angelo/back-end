@@ -1,0 +1,205 @@
+@import url(./styledefault.css);
+
+/* */
+
+.main{
+    background-color: var(--white);
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 100px 1fr 1fr;
+}
+
+.main .header-section{
+    height: 100px;
+    background-color: var(--kulayblack);
+    color: var(--white);
+}
+
+.main .header-section .header-main{
+    display: flex;
+    align-items: center;
+    width: 70%;
+    margin: auto;
+    height: 100px;
+}
+
+.main .header-section .header-main .logo{
+    display: flex;
+    flex: 1;
+}
+
+.main .header-section .header-main .logo img{
+    width: 180px;
+    height: 100px;
+}
+
+.main .header-section .header-main .logo h1{
+    display: inline;
+    padding: 0;
+    margin-top: 40px;
+}
+
+.main .header-section .header-main .follow{
+    display: flex;
+    align-items: center;
+}
+
+.main .header-section .header-main .follow li{
+    font-size: 25px;
+    margin: 0 5px;
+}
+
+.main .header-section .header-main .follow img{
+    height: 25px;
+}
+
+/* product */
+/* product */
+/* product */
+
+.main .product-container{
+    width: 70%;
+    height: 70vh;
+    margin: 20px auto;
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--white);
+}
+
+.main .product-container .product-image{
+    width: 40%;
+    height: 400px;
+}
+
+.main .product-container .product-image .product-image-container{
+    width: 100%;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--kulayblack);
+}
+
+.main .product-container .product-image .product-image-container img{
+    width: 95%;
+    height: 95%;
+    background-color: var(--kulayblack);
+}
+
+.main .product-container .product-description{
+    width: 100%;
+    height: 100px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    color: var(--white);
+    background-color: var(--kulayblack);
+    transition: height 500ms ease;
+}
+
+.main .product-container .product-description p{
+    width: 90%;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.main .product-container .product-description:hover{
+    height: 200px;
+    margin-bottom: 20px;
+}
+
+/* Availability */
+
+.main .product-container .availability-container{
+    width: 50%;
+    height: 350px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--kulayblack);
+}
+
+.main .product-container .availability-container p, h1{
+    margin-left: 10%;
+    color: var(--white);
+}
+
+.main .product-container .availability-container input{
+    width: 70px;
+}
+
+.main .product-container .availability-container .button{
+    width: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main .product-container .availability-container .button button{
+    padding: 15px;
+    width: 45%;
+    font-size: larger;
+}
+
+.main .product-container .availability-container .button button{
+    padding: 15px;
+    width: 45%;
+    font-size: larger;
+    cursor: pointer;
+}
+
+.main .product-container .availability-container .button button:nth-child(1){
+    background-color: var(--kulaygray);
+    color: var(--white);
+    border: none;
+}
+
+.main .product-container .availability-container .payment-method{
+    width: 80%;
+    margin: auto;
+}
+
+.main .product-container .availability-container .payment-method h3{
+    color: var(--white);
+    margin-top: -30px;
+}
+
+.main .product-container .availability-container .payment-method .payment-container{
+    display: flex;
+
+}
+
+.main .product-container .availability-container .payment-method .payment-container .payment{
+    width: 60px;
+    height: 30px;
+    border: 1px white solid;
+    margin-top: -15px;
+}
+
+.main .product-container .availability-container .payment-method .payment-container .payment img{
+    width: 100%;
+    height: 100%;
+    background-color: var(--white);
+}
+
+.main .product-container .availability-container .payment-method .payment-container .payment:nth-child(2){
+    margin-left: 20px;
+}
+/* Footer */
+/* Footer */
+/* Footer */
+
+.main .footer{
+    height: 19.7vh;
+    background-color: var(--kulayblack);
+}
+
+.main .footer .footer-section{
+    display: flex;
+    justify-content: space-around;
+}
+
+.main .footer .footer-section > div{
+    text-align: center;
+    color: var(--white);
+}
