@@ -1,0 +1,16 @@
+@import url('../styles/styledefault.css');
+
+.footer{
+    height: 20vh;
+    background-color: var(--kulayblack);
+}
+
+.footer .footer-section{
+    display: flex;
+    justify-content: space-around;
+}
+
+.footer .footer-section > div{
+    text-align: center;
+    color: var(--white);
+}

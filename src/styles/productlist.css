@@ -1,0 +1,89 @@
+@import url('../styles/styledefault.css');
+
+.product-container{
+    width: 70%;
+    height: 150vh;
+    margin: 120px auto 20px auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.product-container .category-container{
+    width: 20%;
+    height: 15%;
+    color: var(--white);
+    background-color: var(--kulayblack);
+}
+
+.product-container .category-container h3, ul{
+    margin-left: 10%;
+}
+
+.product-container .allproduct{
+    width: 77%;
+    height: 150vh;
+    margin-bottom: 5px;
+    background-color: var(--kulayblack);
+}
+
+.product-container .allproduct .productheader{
+    height: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    color: var(--white);
+}
+
+.product-container .allproduct .productheader label{
+    margin-right: 10%;
+}
+
+.product-container .allproduct .productheader button{
+    height: 40%;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: var(--white);
+    border: none;
+}
+
+.product-container .allproduct .product-list{
+    display: grid;
+    grid-template-columns: repeat(4, 25%);
+    grid-auto-rows: 276px;
+}
+.product-container .allproduct .product-list .product{
+    background-color: var(--white);
+    border: 2px var(--kulayblack) solid;
+}
+
+.product-container .allproduct .product-list .product a {
+    color: var(--kulayblack);
+}
+
+.product-container .allproduct .product-list .product a .img-container{
+    width: 100%;
+    height: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-container .allproduct .product-list .product a .img-container img{
+    width: 80%;
+    height: 80%;
+    align-items: center;
+    border: 4px var(--kulayblack) solid;
+}
+
+.product-container .allproduct .product-list .product a h4{
+    padding: 0;
+    margin-top: -10px;
+    margin-left: 10%;
+}
+
+.product-container .allproduct .product-list .product h3,
+.product-container .allproduct .product-list .product p{
+    padding: 0;
+    margin-top: -10px;
+    margin-left: 10%;
+}
