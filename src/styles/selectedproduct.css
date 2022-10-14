@@ -72,6 +72,7 @@
 .main .product-container .availability-container .button{
     width: 80%;
     margin: auto;
+    margin-top: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -79,21 +80,15 @@
 
 .main .product-container .availability-container .button button{
     padding: 15px;
-    width: 45%;
-    font-size: larger;
-}
-
-.main .product-container .availability-container .button button{
-    padding: 15px;
-    width: 45%;
+    width: 100%;
     font-size: larger;
     cursor: pointer;
 }
 
-.main .product-container .availability-container .button button:nth-child(1){
-    background-color: var(--kulaygray);
+.main .product-container .availability-container .button button:hover{
     color: var(--white);
-    border: none;
+    background-color: black;
+    border: 1px var(--white) solid;
 }
 
 .main .product-container .availability-container .payment-method{
