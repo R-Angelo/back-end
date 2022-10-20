@@ -61,6 +61,11 @@
 
 .main .category-section .category-list .category a{
     align-items: center;
+    color: var(--kulayblack);
+}
+
+.main .category-section .category-list .category a:hover{
+    color: var(--white);
 }
 
 .main .category-section .category-list .category a .image-container{
@@ -78,7 +83,6 @@
     text-align: center;
     margin-top: 30px;
     padding: 0;
-    color: var(--kulayblack);
 }
 
 /* Feedback Section */
