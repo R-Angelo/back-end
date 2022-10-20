@@ -8,7 +8,6 @@ import '../styles/cart.css'
 
 // component
 import Header from './Header'
-import Footer from './Footer'
 
 const Cart = () => {
     return(
@@ -103,7 +102,6 @@ const Cart = () => {
                     </div>
                 </div>
         </div>
-        <Footer />
         </>
     )
 }
