@@ -1,5 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useState } from 'react';
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
 
 //components
 import Header from './Header'
@@ -14,65 +17,102 @@ import petaccessories from '../image/pet-accessories-category.png'
 import petcage from '../image/pet-cage-category.png'
 import petbowl from '../image/pet-feeder-category.png'
 import pettreats from '../image/pet-treat-category.png'
-import Footer from './Footer'
+import { Box } from '@mui/material';
+
 
 const HomePage = () => {
+    const boxStyle = {
+        backgroundColor: 'white', 
+        color: 'black',
+        height: '100%',
+        width: '16%',
+        "&:hover": {
+            backgroundColor: 'black',
+            color: 'white',
+        },
+        "& a:hover": {
+            backgroundColor: 'black',
+            color: 'white',
+        },
+    }
+
+
+    const [index, setIndex] = useState(0);
+
+    const handleSelect = (selectedIndex, e) => {
+    setIndex(selectedIndex);
+    };
     return (
         <div className='main'>
             <Header />
-            <div className="promotion-section"> <h1>carousel nakalagay dito</h1></div>
+            <div className="promotion-section">
+            {/* <Carousel>
+                <div>
+                    <img src={petfood} />
+                    <p className="legend">Legend 1</p>
+                </div>
+                <div>
+                    <img src={petfood} />
+                    <p className="legend">Legend 2</p>
+                </div>
+                <div>
+                    <img src={petfood} />
+                    <p className="legend">Legend 3</p>
+                </div>
+            </Carousel> */}
+            </div>
 
             <div className="category-section">
                 <h3>Categories</h3>
                 <div className="category-list">
-                    <div className="category">
-                        <Link to="/productlist" >
+                    <Box  className="category" sx={boxStyle}>
+                        <Link to="/productlist" sx={boxStyle}>
                             <div className="image-container">
-                                <img src={petfood} alt="petfoodicon"></img>
+                                <img src={petfood} alt="petfoodicon" ></img>
                             </div>
                             <p>Pet food</p>
                         </Link>
-                    </div>
-                    <div className="category">
-                        <Link to="/productlist">
+                    </Box>
+                    <Box  className="category" sx={boxStyle}>
+                        <Link to="/productlist" >
                             <div className="image-container">
                                 <img src={petvit} alt="petvitaminsicon"></img>
                             </div>
                             <p>Pet supplement</p>
                         </Link>
-                    </div>
-                    <div className="category">
-                        <Link to="/productlist">
+                    </Box>
+                    <Box  className="category" sx={boxStyle}>
+                        <Link to="/productlist" >
                         <div className="image-container">
                             <img src={petaccessories} alt="petaccessoriesicon"></img>
                         </div>
                         <p>Pet accessories</p>
                         </Link>
-                    </div>
-                    <div className="category">
+                    </Box>
+                    <Box  className="category" sx={boxStyle}>
                         <Link to="/productlist">
                         <div className="image-container">
                             <img src={petcage} alt="petcageicon"></img>
                         </div>
                         <p>Pet cage</p>
                         </Link>
-                    </div>
-                    <div className="category">
+                    </Box>
+                    <Box  className="category" sx={boxStyle}>
                         <Link to="/productlist">
                         <div className="image-container">
                             <img src={petbowl} alt="petbowlsicon"></img>
                         </div>
                         <p>Pet feeders/bowls</p>
                         </Link>
-                    </div>
-                    <div className="category">
+                    </Box>
+                    <Box  className="category" sx={boxStyle}>
                         <Link to="/productlist">
                         <div className="image-container">
                             <img src={pettreats} alt="pettreaticon"></img>
                         </div>
                         <p>Pet treats</p>
                         </Link>
-                    </div>
+                    </Box>
                 </div>
             </div>
 
@@ -87,7 +127,6 @@ const HomePage = () => {
             <div className="about-section">
                 <h3>About</h3>
             </div>
-            <Footer />
         </div>
     )
 }
