@@ -23,30 +23,9 @@
 }
 
 .main .product-container .product-image .product-image-container img{
-    width: 95%;
-    height: 95%;
-    background-color: var(--kulayblack);
-}
-
-.main .product-container .product-description{
     width: 100%;
-    height: 100px;
-    margin-bottom: 20px;
-    margin-top: 20px;
-    color: var(--white);
-    background-color: var(--kulayblack);
-    transition: height 500ms ease;
-}
-
-.main .product-container .product-description p{
-    width: 90%;
-    margin: auto;
-    margin-top: 20px;
-}
-
-.main .product-container .product-description:hover{
-    height: 200px;
-    margin-bottom: 20px;
+    height: 100%;
+    border: 1px var(--kulayblack) solid;
 }
 
 /* Availability */
