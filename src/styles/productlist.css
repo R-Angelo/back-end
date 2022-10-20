@@ -10,20 +10,29 @@
 
 .product-container .category-container{
     width: 20%;
-    height: 15%;
-    color: var(--white);
-    background-color: var(--kulayblack);
+    height: 22%;
+    color: var(--kulayblack);
+    background-color: var(--white);
 }
 
 .product-container .category-container h3, ul{
     margin-left: 10%;
 }
 
+.product-container .category-container a{
+    color: var(--kulayblack);
+}
+
+.product-container .category-container a:hover{
+    background-color: var(--kulaygray);
+    color: var(--white);
+}
+
 .product-container .allproduct{
     width: 77%;
     height: 150vh;
     margin-bottom: 5px;
-    background-color: var(--kulayblack);
+    background-color: var(--white);
 }
 
 .product-container .allproduct .productheader{
@@ -32,18 +41,53 @@
     align-items: center;
     justify-content: flex-end;
     color: var(--white);
+    background-color: var(--kulayblack);
 }
 
-.product-container .allproduct .productheader label{
-    margin-right: 10%;
+.product-container .allproduct .productheader h4{
+    margin-right: 10px;
+} 
+
+.product-container .allproduct .productheader a{
+    color: var(--white);
+}
+
+.product-container .allproduct .productheader .dropdown{
+    position: relative;
+}
+
+.product-container .allproduct .productheader .dropdown .dropdown-content{
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    right: 0;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.product-container .allproduct .productheader .dropdown .dropdown-content a {
+    color: black;
+    padding: 4px 4px;
+    text-decoration: none;
+    display: block;
+}
+
+.product-container .allproduct .productheader .dropdown-content a:hover{
+    background-color: #f1f1f1
+}
+
+.product-container .allproduct .productheader .dropdown:hover .dropdown-content{
+    display: block;
+}
+
+.product-container .allproduct .productheader.dropdown:hover .dropbtn{
+    background-color: #3e8e41;
 }
 
 .product-container .allproduct .productheader button{
-    height: 40%;
     margin-left: 10px;
     margin-right: 10px;
     background-color: var(--white);
-    border: none;
 }
 
 .product-container .allproduct .product-list{
@@ -53,7 +97,6 @@
 }
 .product-container .allproduct .product-list .product{
     background-color: var(--white);
-    border: 2px var(--kulayblack) solid;
 }
 
 .product-container .allproduct .product-list .product a {
@@ -62,17 +105,19 @@
 
 .product-container .allproduct .product-list .product a .img-container{
     width: 100%;
-    height: 70%;
+    height: 53%;
     display: flex;
     align-items: center;
     justify-content: center;
+    
 }
 
 .product-container .allproduct .product-list .product a .img-container img{
-    width: 80%;
-    height: 80%;
+    width: 100%;
+    height: 100%;
     align-items: center;
-    border: 4px var(--kulayblack) solid;
+    border: 1px var(--kulayblack) solid;
+    border-radius: 4px;
 }
 
 .product-container .allproduct .product-list .product a h4{
