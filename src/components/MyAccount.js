@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 
 // component
 import Header from './Header'
-import Footer from './Footer'
 
 //styles
 import '../styles/myaccount.css'
@@ -14,49 +13,61 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 // image
 import profile from '../image/user.png'
 
+
+//MUI
+import { Divider, ListItem, Paper } from '@mui/material'
+import List from '@mui/material/List';
+import ListItemText from '@mui/material/ListItemText';
+
+
+
+
 const MyAccount = () => {
+    const style = {
+        width: '100%',
+        maxWidth: 360,
+      };
     return (
         <>
             <Header />
-            <div class="main-content-container">
-                <div class="menu-bar">
-                    <div class="profile-container">
-                        <div class="user-icon-container">
+            <div className="main-content-container">
+                <Paper elevation={3} className="menu-bar" >
+                    <div className="profile-container">
+                        <div className="user-icon-container">
                             <img src={profile} alt="" />
                         </div>
-                        <div class="username-container">
+                        <div className="username-container">
                             <p>Username</p>
                             <p><Link href="/myaccount">Edit profile</Link></p>
                         </div>
                     </div>
-                    <hr />
-                    <div class="menu-container">
-                        <ul>
-                            <li>
-                                <div class="dropdown">
+                    <Divider sx={{padding: 1}} />
+                    <Paper className="menu-container" sx={{borderRadius: '0'}}>
+                        <List sx={style} component="nav" aria-label="mailbox folders">
+                                <div className="dropdown">
                                     <Link href="/myaccount">My Account 
-                                        <div class="dropdown-logo-container"> 
+                                        <div className="dropdown-logo-container"> 
                                             <ArrowDropDownIcon />
                                         </div>
                                     </Link>
-                                    <div class="dropdown-content">
+                                    <div className="dropdown-content">
                                         <Link to="/myaccount">My Profile</Link>
                                         <Link href="#">Addresses</Link>
                                         <Link href="#">Change Password</Link>
+                                        <Link href="#">My Pet</Link>
                                     </div>
                                 </div>
-                            </li>
-                            <li>
-                                <Link to="/mypurchase">
-                                    My Purchase
-                                </Link>
-                            </li>
+                            <Link to="/mypurchase">
+                                <ListItem button>
+                                    <ListItemText primary="My Purchase" />
+                                </ListItem>
+                            </Link>  
 
-                        </ul>
-                    </div>
-                </div>
-                <div class="myaccount-container">
-                    <div class="accountdata-container">
+                        </List>
+                    </Paper>
+                </Paper>
+                <div className="myaccount-container">
+                    <div className="accountdata-container">
                         <h1>My Profile</h1>
                         <label><h3>Name</h3></label>
                         <input type="text" name="name" id="name" />
@@ -69,8 +80,8 @@ const MyAccount = () => {
                         <label><h3>Date of birth</h3></label>
                         <input type="date" name="dob" id="dob" />
                     </div>
-                    <div class="accountprofile-container">
-                        <div class="image-container">
+                    <div className="accountprofile-container">
+                        <div className="image-container">
                             <img src={profile} alt="User profile" />
                         </div>
                         <button>Select image</button>
@@ -78,7 +89,6 @@ const MyAccount = () => {
                     </div>
                 </div>
             </div>
-            <Footer/>
         </>
     )
 }
