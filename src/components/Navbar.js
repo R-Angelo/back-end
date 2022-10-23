@@ -10,7 +10,7 @@ import {
 	FaBars
 } from 'react-icons/fa';
 import { NavLink } from "react-router-dom";
-import "../style/navbar.css";
+import "../styles/navbar.css";
 
 const ICON_SIZE = 20;
 
@@ -41,7 +41,7 @@ function Navbar({visible, show}) {
 						to="/"
 					>
 							<img
-								src={require("../assets/Images/ed.jpg")}
+								src={""}
 								alt="logo"
 							/>
 					</NavLink>
@@ -58,9 +58,25 @@ function Navbar({visible, show}) {
 							<FaThLarge size={ICON_SIZE} />
 							<span>Dashboard</span>
 						</NavLink>
-						<NavLink to="/analytics" className="nav-link">
+                        <NavLink to="/supplies" className="nav-link">
+							<FaThLarge size={ICON_SIZE} />
+							<span>Supplies</span>
+						</NavLink>
+                        <NavLink to="/transactions" className="nav-link">
+							<FaThLarge size={ICON_SIZE} />
+							<span>Transactions</span>
+						</NavLink>
+                        <NavLink to="/pethistory" className="nav-link">
+							<FaThLarge size={ICON_SIZE} />
+							<span>Record pet history</span>
+						</NavLink>
+                        <NavLink to="/addnewemployee" className="nav-link">
+							<FaThLarge size={ICON_SIZE} />
+							<span>Add new employee</span>
+						</NavLink>
+						<NavLink to="/inquiries" className="nav-link">
 							<FaChartBar size={ICON_SIZE} />
-							<span>Analytics </span>
+							<span>Inquiries/Message </span>
 						</NavLink>
 						
 					</div>
