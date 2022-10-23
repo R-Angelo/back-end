@@ -10,10 +10,11 @@ import SelectedProduct from './components/SelectedProduct';
 import Cart from './components/Cart';
 import MyAccount from './components/MyAccount';
 import MyPurchase from './components/MyPurchase'
+import { AuthProvider } from "../context/Authcontext"
 
 function App() {
   return (
-    <>
+    <AuthProvider>
       <Routes>
           <Route path='/' element={<HomePage/>} />
           <Route path='/login' element={<Login />} />
@@ -25,8 +26,8 @@ function App() {
           <Route path='/mypurchase' element={<MyPurchase />} />
           
       </Routes>
-      
-    </>
+
+    </AuthProvider>
   );
 }
 

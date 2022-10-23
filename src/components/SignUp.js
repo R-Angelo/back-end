@@ -13,6 +13,9 @@ import LoginHeader from './LoginHeader'
 //icons
 import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 
+//Database
+import {useAuth} from '../context/Authcontext'
+
 const SignUp = () =>{
 
     const [name, setName] = useState();
@@ -20,6 +23,7 @@ const SignUp = () =>{
     const [phoneNum, setPhoneNum] = useState();
     const [password, setPassword] = useState();
     const [cpass, setCPass] = useState();
+    const { signup } = useAuth()
 
     // Error
     const [nameError, setNameError] = useState();
@@ -29,6 +33,8 @@ const SignUp = () =>{
     const [cpassError, setCPassError] = useState();
 
     const [gender, setGender] = useState('');
+
+    //const [error, setError] = useState('')
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -47,8 +53,8 @@ const SignUp = () =>{
         if( phoneNum == ''){
             setPhoneNumError(true)
         }
-        if( password == ''){
-            setPasswordError(true)
+        if( password.current.value !== cpass.current.value){
+            return
         }
         if( cpass == ''){
             setCPassError(true)
@@ -58,6 +64,7 @@ const SignUp = () =>{
         if (name && email && phoneNum && password && cpass){
             console.log(name, email, gender, phoneNum, password, cpass)
         }
+        signup(name.current.value, email.current.value, phoneNum.current.value,password.current.value,gender.current.value)
     }
 
     const paperStyled = {
