@@ -7,7 +7,11 @@ import {
 	FaShoppingCart, 
 	FaCog,
 	FaSignOutAlt,
-	FaBars
+	FaBars,
+	FaBoxes,
+	FaReceipt,
+	FaRegClipboard,
+	FaRegUserCircle
 } from 'react-icons/fa';
 import { NavLink } from "react-router-dom";
 import "../styles/navbar.css";
@@ -54,24 +58,20 @@ function Navbar({visible, show}) {
 							<FaShoppingCart size={ICON_SIZE} />
 							<span>Orders</span> 
 						</NavLink>
-						<NavLink to="/dashboard" className="nav-link">
-							<FaThLarge size={ICON_SIZE} />
-							<span>Dashboard</span>
-						</NavLink>
                         <NavLink to="/supplies" className="nav-link">
-							<FaThLarge size={ICON_SIZE} />
+						<FaBoxes size={ICON_SIZE} />
 							<span>Supplies</span>
 						</NavLink>
                         <NavLink to="/transactions" className="nav-link">
-							<FaThLarge size={ICON_SIZE} />
+							<FaReceipt size={ICON_SIZE} />
 							<span>Transactions</span>
 						</NavLink>
                         <NavLink to="/pethistory" className="nav-link">
-							<FaThLarge size={ICON_SIZE} />
+							<FaRegClipboard size={ICON_SIZE} />
 							<span>Record pet history</span>
 						</NavLink>
                         <NavLink to="/addnewemployee" className="nav-link">
-							<FaThLarge size={ICON_SIZE} />
+							<FaRegUserCircle size={ICON_SIZE} />
 							<span>Add new employee</span>
 						</NavLink>
 						<NavLink to="/inquiries" className="nav-link">
