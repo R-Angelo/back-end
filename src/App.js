@@ -2,7 +2,7 @@ import React, {useState, useTheme} from 'react';
 import PropTypes from 'prop-types';
 import Navbar from "./components/Navbar";
 import { BrowserRouter, Routes, Route,Navigate } from "react-router-dom";
-import "./styles/index.css";
+import "./style/index.css";
 import TextField from '@mui/material/TextField';
 import { Avatar, Button, Divider, Grid, IconButton, TableFooter, Typography } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
@@ -12,7 +12,6 @@ import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
 import EditIcon from '@mui/icons-material/Edit';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -26,6 +25,12 @@ import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 import Box from '@mui/material/Box';
 import Input from '@mui/material/Input';
 import { InputOutlined, Upload } from '@mui/icons-material';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+import TextareaAutosize from '@mui/material/TextareaAutosize';
 
 // edit admin
 const containerStyle = {
@@ -436,10 +441,57 @@ function App() {
 							</div>
 						</div>
 					} />
-          <Route path='/pethistory' element={
+          <Route path='/pethistory' element={  //PET HISTORY
 						<div className={!navVisible ? "page" : "page page-with-navbar"}>
 							<div>
-								<h1>Pet History</h1>
+              <form>
+                <TextField m={{width:'100%'}}
+                        variant="outlined" 
+                        label='Owner Name' 
+                        id="name" 
+                        sx={{width: '40%', marginBottom:'20px', marginRight:'50px'}}      
+                        required 
+                       />
+					    <TextField 
+                        variant="outlined" 
+                        label='Birthdate' 
+                        id="name" 
+                        sx={{width: '40%', marginBottom:'20px'}}      
+                        required 
+                       />
+              <TextField m={{width:'100%'}}
+                        variant="outlined" 
+                        label='Pet Name' 
+                        id="name" 
+                        sx={{width: '40%', marginBottom:'20px' , marginRight:'50px'}}      
+                        required 
+                       />
+                <TextareaAutosize
+                        aria-label="minimum height"
+                        minRows={8}
+                        placeholder="Description about the pet health"
+                        style={{ width: 360 }}
+                      />
+              <TextField 
+                        variant="outlined" 
+                        label='Pet Breed' 
+                        id="name" 
+                        sx={{width: '40%', marginBottom:'20px', display:'flex', marginTop:'-70px'}}      
+                        required 
+                       />
+              <FormControl className='frmctrl'>
+      <FormLabel id="demo-row-radio-buttons-group-label">Gender</FormLabel>
+      <RadioGroup
+        row
+        aria-labelledby="demo-row-radio-buttons-group-label"
+        name="row-radio-buttons-group"
+      >
+        <FormControlLabel value="female" control={<Radio />} label="Male" />
+        <FormControlLabel value="male" control={<Radio />} label="Female" />
+      </RadioGroup>
+    </FormControl>
+    
+                </form>
 							</div>
 						</div>
 					} />
