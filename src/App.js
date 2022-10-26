@@ -10,7 +10,7 @@ import SelectedProduct from './components/SelectedProduct';
 import Cart from './components/Cart';
 import MyAccount from './components/MyAccount';
 import MyPurchase from './components/MyPurchase'
-import { AuthProvider } from "../context/Authcontext"
+import { AuthProvider } from "../src/context/Authcontext"
 
 function App() {
   return (
