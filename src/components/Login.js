@@ -1,5 +1,7 @@
 
 import React, { useState } from 'react'
+import { signInWithEmailAndPassword } from 'firebase/auth'
+import {auth} from '../firebase-config'
 
 //Components
 import LoginHeader from './LoginHeader'
@@ -11,12 +13,32 @@ import { Avatar, FormControlLabel, Grid, Paper, TextField, Checkbox, Button, Typ
 
 //icons
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import Footer from './Footer';
 
 
 function Login() {
 
+    
+    const [loginEmail, setLoginEmail] = useState('')
+    const [loginPassword, setLoginPassword] = useState('')
+
+    const login = async () => {
+        try {
+            const user = await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
+            console.log(user)
+            alert('successfully login')
+        } catch (e) {
+            console.log(e.message);
+        }
+        
+    }
+
+    const logout = async () => {
+
+    }
+
     const paperStyled = {
-        padding: 20, height: '50vh', width: 500, margin: '100px auto'
+        padding: 20, height: '50vh', width: 500, margin: '150px auto'
     }
     const btnStyle={
         margin: '10px 0'
@@ -33,13 +55,13 @@ function Login() {
             </Grid>
             <Grid>
                 <form noValidate autoComplete='off'>
-                <label>Email or Number</label>
-                    <TextField id="emailnumber" variant="outlined" placeholder='Email or Number' fullWidth required />
+                    <label>Email or Number</label>
+                    <TextField id="emailnumber" variant="outlined" placeholder='Email or Number' onChange={(e) => setLoginEmail(e.target.value)} fullWidth required />
 
                     <label>Password</label>
-                    <TextField id="password" type='password' variant="outlined" placeholder='Password' fullWidth required />
+                    <TextField id="password" type='password' variant="outlined" placeholder='Password' onChange={(e) => setLoginPassword(e.target.value)} fullWidth required />
                     <FormControlLabel control={<Checkbox />} label="Remember me" />
-                    <Button variant="contained" type='submit' fullWidth style={btnStyle} >Sign in</Button>
+                    <Button variant="contained" fullWidth style={btnStyle} onClick={login} >Sign in</Button>
                     <Typography>
                         <Link href='#'>
                             Forgot Password?
@@ -52,6 +74,7 @@ function Login() {
                 </form>
             </Grid>
         </Paper>
+        <Footer />
     </Grid>
   )
 }
