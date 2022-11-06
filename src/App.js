@@ -276,7 +276,7 @@ const [open, setOpen] = React.useState(false);
             <Route path="/" element={<Navigate to="/editAdmin" />} />
             <Route path='/editAdmin' element={
               <div className={!navVisible ? "page" : "page page-with-navbar"}>
-                <Paper elevation={3} sx={{width: '80%', height: '95vh', margin: 'auto'}}>
+                <Paper elevation={3} sx={{width: '80%', margin: 'auto'}}>
                   <Typography variant='h4' sx={{textAlign: 'center', margin: 2}}>My account</Typography>
                   <form style={{width: '80%', margin: 'auto'}}>
                     <TextField m={{width:'100%'}}
@@ -339,6 +339,7 @@ const [open, setOpen] = React.useState(false);
                       />
                     <Button variant="contained"
                     className='save-btn'
+                    sx={{marginBottom: 2}}
                     >
                       Save Changes
                     </Button>  	      
