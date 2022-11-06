@@ -1,4 +1,7 @@
-  import React, {useState, useTheme} from 'react';
+  import React, {useState, useEffect, useTheme} from 'react';
+  import { collection, addDoc, getDocs, doc } from 'firebase/firestore'
+  import {auth, db} from './firebase-config'
+
   import PropTypes from 'prop-types';
   import Navbar from "./components/Navbar";
   import { BrowserRouter, Routes, Route,Navigate } from "react-router-dom";
@@ -31,7 +34,7 @@
   import FormControl from '@mui/material/FormControl';
   import FormLabel from '@mui/material/FormLabel';
   import AddBoxIcon from '@mui/icons-material/AddBox';
-
+  import Modal from '@mui/material/Modal';
   // edit admin
   const containerStyle = {
     
@@ -79,6 +82,7 @@
     color: 'white',
     fontSize: 16,
     borderRadius: 8,
+    marginRight: 1,
     '&:hover': {
       bgcolor: 'white',
       color: 'green',
@@ -181,33 +185,65 @@
     rowsPerPage: PropTypes.number.isRequired,
   };
 
-// For pet history For pet history For pet history For pet history
-// For pet history For pet history For pet history For pet history
-
-  const petColumns = [
-    { field: 'id', headerName: 'ID', width: 80 },
-    { field: 'petName', headerName: 'Pet Name', width: 305 },
-    { field: 'petSpecies', headerName: 'Pet Species', width: 305 },
-    { field: 'petBreed', headerName: 'Pet breed', width: 305 },
-    { field: 'Ownersname', headerName: 'Owners name', width: 305 },
-    { field: 'birthday', headerName: 'Birthday', width: 305 },
-    { field: 'gender', headerName: 'Gender', width: 305 },
-    { field: 'pethistory', headerName: 'Pet history', width: 305 }
-  ];
-
-  const petRows = [
-    { id: 1, petName: 'Ongoing', petSpecies: 'Ongoing', petBreed: 'Ongoing', Ownersname: 'Ongoing', birthday: 'Ongoing', gender: 'Ongoing', pethistory: 'Ongoing'},
-    { id: 2, petName: 'Ongoing', petSpecies: 'Ongoing', petBreed: 'Ongoing', Ownersname: 'Ongoing', birthday: 'Ongoing', gender: 'Ongoing', pethistory: 'Ongoing'},
-    { id: 3, petName: 'Ongoing', petSpecies: 'Ongoing', petBreed: 'Ongoing', Ownersname: 'Ongoing', birthday: 'Ongoing', gender: 'Ongoing', pethistory: 'Ongoing'},
-    { id: 4, petName: 'Ongoing', petSpecies: 'Ongoing', petBreed: 'Ongoing', Ownersname: 'Ongoing', birthday: 'Ongoing', gender: 'Ongoing', pethistory: 'Ongoing'},
-    { id: 5, petName: 'Ongoing', petSpecies: 'Ongoing', petBreed: 'Ongoing', Ownersname: 'Ongoing', birthday: 'Ongoing', gender: 'Ongoing', pethistory: 'Ongoing'},
-    { id: 6, petName: 'Ongoing', petSpecies: 'Ongoing', petBreed: 'Ongoing', Ownersname: 'Ongoing', birthday: 'Ongoing', gender: 'Ongoing', pethistory: 'Ongoing'},
-    { id: 7, petName: 'Ongoing', petSpecies: 'Ongoing', petBreed: 'Ongoing', Ownersname: 'Ongoing', birthday: 'Ongoing', gender: 'Ongoing', pethistory: 'Ongoing'},
-    { id: 8, petName: 'Ongoing', petSpecies: 'Ongoing', petBreed: 'Ongoing', Ownersname: 'Ongoing', birthday: 'Ongoing', gender: 'Ongoing', pethistory: 'Ongoing'},
-    { id: 9, petName: 'Ongoing', petSpecies: 'Ongoing', petBreed: 'Ongoing', Ownersname: 'Ongoing', birthday: 'Ongoing', gender: 'Ongoing', pethistory: 'Ongoing'},
-  ];
-
   function App() {
+
+  // For pet history For pet history For pet history For pet history
+// For pet history For pet history For pet history For pet history
+
+const phModal = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  pt: 2,
+  px: 4,
+  pb: 3,
+};
+
+const [open, setOpen] = React.useState(false);
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  
+
+  const [age, setAge] = useState('');
+  const [breed, setBreed] = useState('');
+  const [date, setDate] = useState('');
+  const [gender, setGender] = useState('');
+  const [ownerName, setOwnerName] = useState('');
+  const [petName, setPetName] = useState('');
+  const [remarks, setRemarks] = useState('');
+  const [species, setSpecies] = useState('');
+  const [healthHistory, setHealthHistory] = useState('');
+
+  const [history, setHistory] = useState([]);
+
+  const petHistoryCollectionRef = collection(db, "petHistory");
+
+  
+  useEffect(() => {
+    const getHistory = async () => {
+      const data = await getDocs(petHistoryCollectionRef);
+      setHistory(data.docs.map((doc) => ({...doc.data(), id: doc.id })))
+    }
+    getHistory();
+  }, []);
+
+  const addPetHistory = async () => {
+      try {
+          const petHistory = await addDoc(petHistoryCollectionRef, {age: age, breed: breed, date: date, gender: gender, ownerName: ownerName, petName: petName, remarks: remarks, species: species, healthHistory: healthHistory});
+      } catch (e) {
+          console.log(e.message);
+      }
+  }
 
     const [navVisible, showNavbar] = useState(false);
     
@@ -474,77 +510,178 @@
             } />
             <Route path='/pethistory' element={  //PET HISTORY
               <div className={!navVisible ? "page" : "page page-with-navbar"}>
-                <Paper elevation={3} sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', width: '90%', height: '100%'}}>
-                    <Typography variant='h5' sx={{marginLeft: '1%'}}>Pet History</Typography>
-                    <div style={{ height: '40%', width: '80%'}}>
-                      <DataGrid
-                        rows={petRows}
-                        columns={petColumns}
-                        pageSize={5}
-                        rowsPerPageOptions={[2]}
-                    />
-                    </div>
-                    <Paper sx={{marginTop: 3, width: '80%', padding: 4}}>
+                <Paper elevation={3} sx={{width: '90%', margin: 'auto'}}>
+                    <Typography variant='h4' sx={{marginLeft: '1%',}}>Pet History</Typography>
+                      
+                      <Modal
+                        open={open}
+                        onClose={handleClose}
+                        aria-labelledby="parent-modal-title"
+                        aria-describedby="parent-modal-description"
+                      >
+                        <Box sx={{ ...phModal, width: '80%' }}>
+                          <h2 id="parent-modal-title">Add new pet history</h2>
+                          <Paper sx={{marginTop: 3, width: '100%', padding: 4}}>
                       <form>
                         <TextField m={{width:'100%'}}
                                   variant="outlined" 
                                   label='Owners Name' 
-                                  id="name" 
+                                  id="ownerName"
+                                  onChange={(e) => setOwnerName(e.target.value)} 
                                   sx={{width: '40%', marginBottom:'10px', marginRight:'2%', marginLeft:'1%'}}      
                                   required 
                                 />
                         <TextField m={{width:'100%'}}
                                   variant="outlined" 
                                   label='Pet Name' 
-                                  id="name" 
+                                  id="petName"
+                                  onChange={(e) => setPetName(e.target.value)}  
                                   sx={{width: '26%', marginBottom:'10px', marginRight:'2%'}}      
                                   required 
                                 />
                         <TextField m={{width:'100%'}}
                                   variant="outlined" 
                                   label='Pet Species' 
-                                  id="name" 
+                                  id="species" 
+                                  onChange={(e) => setSpecies(e.target.value)} 
                                   sx={{width: '28%', marginBottom:'10px',}}      
                                   required 
                                 />
                         <TextField m={{width:'100%'}}
                                   variant="outlined" 
                                   label='Pet Breed' 
-                                  id="name" 
+                                  id="breed" 
+                                  onChange={(e) => setBreed(e.target.value)} 
                                   sx={{width: '30%', marginBottom:'10px', marginRight:'2%', marginLeft:'1%'}}      
                                   required 
                                 />
                         <TextField m={{width:'100%'}}
                                   variant="outlined" 
-                                  label='Birthday' 
-                                  id="name" 
+                                  label='Age' 
+                                  id="age" 
+                                  onChange={(e) => setAge(e.target.value)} 
                                   sx={{width: '30%', marginBottom:'10px', marginRight:'2%'}}      
                                   required 
                                 />
                         <FormControl className='frmctrl'>
-                          <FormLabel id="demo-row-radio-buttons-group-label">Gender</FormLabel>
+                          <FormLabel >Gender</FormLabel>
                           <RadioGroup
                             row
                             aria-labelledby="demo-row-radio-buttons-group-label"
                             name="row-radio-buttons-group"
+                            id="gender"
+                            onChange={(e) => setGender(e.target.value)} 
                           >
                             <FormControlLabel value="female" control={<Radio />} label="Male" />
                             <FormControlLabel value="male" control={<Radio />} label="Female" />
                           </RadioGroup>
-                        </FormControl>        
+                        </FormControl> 
+                        <TextField m={{width:'100%'}}
+                                  variant="outlined" 
+                                  label='Remarks' 
+                                  onChange={(e) => {setRemarks(e.target.value)}}
+                                  id="remarks" 
+                                  sx={{width: '30%', marginBottom:'10px', marginRight:'2%', marginLeft:'1%'}}
+                                  required 
+                                />
+                        <TextField m={{width:'100%'}}
+                                  type='datetime-local'
+                                  variant="outlined" 
+                                  id="date" 
+                                  onChange={(e) => {setDate(e.target.value)}}
+                                  sx={{width: '30%', marginBottom:'10px', marginRight:'2%'}}      
+                                  required 
+                                />       
                         <TextField 
                                   variant="outlined" 
                                   label='Pet health history' 
-                                  id="name" 
+                                  id="healthHistory" 
+                                  onChange={(e) => {setHealthHistory(e.target.value)}}
                                   multiline rows={6}
                                   sx={{width: '98%', marginBottom:'10px', marginLeft:'1%'}}      
                                   required 
                                 />
 
-                        <Button variant='contained' color='success' type='submit' startIcon={<AddBoxIcon />} >Add pet history</Button>
-                        <Button variant='contained' color='error' type='submit' startIcon={<DeleteIcon />} >Delete pet history</Button>
+                        <Button variant='contained' color='success' onClick={addPetHistory} startIcon={<AddBoxIcon />} >Add pet history</Button>
+                        <Button variant='contained' type='reset' >Clear</Button>
                       </form>
                     </Paper>
+                        </Box>
+                      </Modal>
+                    <TableContainer sx={{display: 'flex', justifyContent: 'center'}} >
+                    <Table sx={{ minWidth: 700, width: '100%' }} aria-label="customized table">
+                      <TableHead sx={{bgcolor: 'black'}}>
+                        <TableRow>
+                          <TableCell align="left" sx={{color: 'white', fontSize: '17px'}}>Owner's Name</TableCell>
+                          <TableCell align="left" sx={{color: 'white', fontSize: '17px'}}>Pet Name</TableCell>
+                          <TableCell align="left" sx={{color: 'white', fontSize: '17px'}}>Pet Species</TableCell>
+                          <TableCell align="left" sx={{color: 'white', fontSize: '17px'}}>Pet Breed</TableCell>
+                          <TableCell align="left" sx={{color: 'white', fontSize: '17px'}}>Age</TableCell>
+                          <TableCell align="left" sx={{color: 'white', fontSize: '17px'}}>Gender</TableCell>
+                          <TableCell align="left" sx={{color: 'white', fontSize: '17px'}}>Remarks</TableCell>
+                          {/* <TableCell align="right" sx={{color: 'white'}}>Date</TableCell> */}
+                          <TableCell align="center" sx={{color: 'white', fontSize: '17px'}}>History</TableCell>
+                          <TableCell align="left" sx={{color: 'white', fontSize: '17px'}}>Actions</TableCell>
+                        </TableRow>
+                      </TableHead>
+                      <TableBody>{(rowsPerPage > 0
+                            ? history.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                            : history
+                          ).map((pet) => (
+                          <TableRow key={pet.name}>
+                            <TableCell align="left">{pet.ownerName}</TableCell>
+                            <TableCell align="left">{pet.petName}</TableCell>
+                            <TableCell align="left">{pet.species}</TableCell>
+                            <TableCell align="left">{pet.breed}</TableCell>
+                            <TableCell align="left">{pet.age}</TableCell>
+                            <TableCell align="left">{pet.gender}</TableCell>
+                            <TableCell align="left">{pet.remarks}</TableCell>
+                            {/* may error kay date kaya naka comment muna ayaw mag display */}
+                            {/* <TableCell align="right">{pet.date}</TableCell>  */}
+                            <TableCell align="center" width='35%'>{pet.healthHistory}</TableCell>
+                            <TableCell align="left">
+                              <IconButton sx={editStyle}>Edit<EditIcon fontSize='small'/></IconButton> 
+                              <IconButton sx={deleteStyle}>Delete<DeleteIcon fontSize='small'/></IconButton>
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                        {emptyRows > 0 && (
+                          <TableRow style={{ height: 53 * emptyRows }}>
+                            <TableCell colSpan={6} />
+                          </TableRow>
+                        )}
+                      </TableBody>
+                      <TableFooter>
+                        <TableRow>
+                            <TablePagination
+                              rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+                              colSpan={10}
+                              count={history.length}
+                              rowsPerPage={rowsPerPage}
+                              page={page}
+                              SelectProps={{
+                                inputProps: {
+                                  'aria-label': 'rows per page',
+                                },
+                                native: true,
+                              }}
+                              onPageChange={handleChangePage}
+                              onRowsPerPageChange={handleChangeRowsPerPage}
+                            />
+                          </TableRow>
+                      </TableFooter>
+                    </Table>
+                  </TableContainer>
+                  <Button variant='contained' color='success' onClick={handleOpen} startIcon={<AddBoxIcon />} sx={{float: 'right', margin: 3}}>Add pet history</Button>
+                    {/* <div style={{ height: '40%', width: '80%'}}>
+                      <DataGrid
+                        rows={petRows}
+                        columns={petColumns}
+                        pageSize={5}
+                        rowsPerPageOptions={[2]}
+                    />
+                    </div> */}
+                    
                 </Paper>
               </div>
             } />
