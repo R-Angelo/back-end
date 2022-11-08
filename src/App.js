@@ -224,20 +224,56 @@ const [open, setOpen] = React.useState(false);
   const [species, setSpecies] = useState('');
   const [healthHistory, setHealthHistory] = useState('');
 
+  const [ageErr, setAgeErr] = useState('');
+  const [breedErr, setBreedErr] = useState('');
+  const [dateErr, setDateErr] = useState('');
+  const [genderErr, setGenderErr] = useState('');
+  const [ownerNameErr, setOwnerNameErr] = useState('');
+  const [petNameErr, setPetNameErr] = useState('');
+  const [remarksErr, setRemarksErr] = useState('');
+  const [speciesErr, setSpeciesErr] = useState('');
+  const [healthHistoryErr, setHealthHistoryErr] = useState('');
+
   const [history, setHistory] = useState([]);
 
   const petHistoryCollectionRef = collection(db, "petHistory");
 
-  
   useEffect(() => {
     const getHistory = async () => {
       const data = await getDocs(petHistoryCollectionRef);
       setHistory(data.docs.map((doc) => ({...doc.data(), id: doc.id })))
     }
     getHistory();
-  }, []);
+  });
 
   const addPetHistory = async () => {
+    if( age == ''){
+      setAgeErr(true)
+    }
+    if( breed == ''){
+        setBreedErr(true)
+    }
+    if( gender == ''){
+        setGenderErr(true)
+    }
+    if( date == ''){
+        setDateErr(true)
+    }
+    if( ownerName == ''){
+        setOwnerNameErr(true)
+    }
+    if( petName == ''){
+        setPetNameErr(true)
+    }
+    if( remarks == ''){
+      setRemarksErr(true)
+    }
+    if( species == ''){
+      setSpeciesErr(true)
+    }
+    if( healthHistory == ''){
+      setHealthHistoryErr(true)
+    }
       try {
           const petHistory = await addDoc(petHistoryCollectionRef, {age: age, breed: breed, date: date, gender: gender, ownerName: ownerName, petName: petName, remarks: remarks, species: species, healthHistory: healthHistory});
       } catch (e) {
@@ -529,6 +565,7 @@ const [open, setOpen] = React.useState(false);
                                   label='Owners Name' 
                                   id="ownerName"
                                   onChange={(e) => setOwnerName(e.target.value)} 
+                                  error={ownerNameErr}
                                   sx={{width: '40%', marginBottom:'10px', marginRight:'2%', marginLeft:'1%'}}      
                                   required 
                                 />
@@ -536,7 +573,8 @@ const [open, setOpen] = React.useState(false);
                                   variant="outlined" 
                                   label='Pet Name' 
                                   id="petName"
-                                  onChange={(e) => setPetName(e.target.value)}  
+                                  onChange={(e) => setPetName(e.target.value)}
+                                  error={petNameErr}  
                                   sx={{width: '26%', marginBottom:'10px', marginRight:'2%'}}      
                                   required 
                                 />
@@ -544,7 +582,8 @@ const [open, setOpen] = React.useState(false);
                                   variant="outlined" 
                                   label='Pet Species' 
                                   id="species" 
-                                  onChange={(e) => setSpecies(e.target.value)} 
+                                  onChange={(e) => setSpecies(e.target.value)}
+                                  error={speciesErr}
                                   sx={{width: '28%', marginBottom:'10px',}}      
                                   required 
                                 />
@@ -553,6 +592,7 @@ const [open, setOpen] = React.useState(false);
                                   label='Pet Breed' 
                                   id="breed" 
                                   onChange={(e) => setBreed(e.target.value)} 
+                                  error={breedErr}
                                   sx={{width: '30%', marginBottom:'10px', marginRight:'2%', marginLeft:'1%'}}      
                                   required 
                                 />
@@ -561,6 +601,7 @@ const [open, setOpen] = React.useState(false);
                                   label='Age' 
                                   id="age" 
                                   onChange={(e) => setAge(e.target.value)} 
+                                  error={ageErr}
                                   sx={{width: '30%', marginBottom:'10px', marginRight:'2%'}}      
                                   required 
                                 />
@@ -572,6 +613,7 @@ const [open, setOpen] = React.useState(false);
                             name="row-radio-buttons-group"
                             id="gender"
                             onChange={(e) => setGender(e.target.value)} 
+                            error={genderErr}
                           >
                             <FormControlLabel value="female" control={<Radio />} label="Male" />
                             <FormControlLabel value="male" control={<Radio />} label="Female" />
@@ -581,6 +623,7 @@ const [open, setOpen] = React.useState(false);
                                   variant="outlined" 
                                   label='Remarks' 
                                   onChange={(e) => {setRemarks(e.target.value)}}
+                                  error={remarksErr}
                                   id="remarks" 
                                   sx={{width: '30%', marginBottom:'10px', marginRight:'2%', marginLeft:'1%'}}
                                   required 
@@ -590,6 +633,7 @@ const [open, setOpen] = React.useState(false);
                                   variant="outlined" 
                                   id="date" 
                                   onChange={(e) => {setDate(e.target.value)}}
+                                  error={dateErr}
                                   sx={{width: '30%', marginBottom:'10px', marginRight:'2%'}}      
                                   required 
                                 />       
@@ -598,13 +642,15 @@ const [open, setOpen] = React.useState(false);
                                   label='Pet health history' 
                                   id="healthHistory" 
                                   onChange={(e) => {setHealthHistory(e.target.value)}}
+                                  error={healthHistoryErr}
                                   multiline rows={6}
                                   sx={{width: '98%', marginBottom:'10px', marginLeft:'1%'}}      
                                   required 
                                 />
 
                         <Button variant='contained' color='success' onClick={addPetHistory} startIcon={<AddBoxIcon />} >Add pet history</Button>
-                        <Button variant='contained' type='reset' >Clear</Button>
+                        <Button variant='contained' type='reset' sx={{margin: '0 5px'}} >Clear</Button>
+                        <Button variant='contained' color='error' onClick={handleClose}>Cancel</Button>
                       </form>
                     </Paper>
                         </Box>
@@ -620,7 +666,7 @@ const [open, setOpen] = React.useState(false);
                           <TableCell align="left" sx={{color: 'white', fontSize: '17px'}}>Age</TableCell>
                           <TableCell align="left" sx={{color: 'white', fontSize: '17px'}}>Gender</TableCell>
                           <TableCell align="left" sx={{color: 'white', fontSize: '17px'}}>Remarks</TableCell>
-                          {/* <TableCell align="right" sx={{color: 'white'}}>Date</TableCell> */}
+                          <TableCell align="right" sx={{color: 'white'}}>Date</TableCell>
                           <TableCell align="center" sx={{color: 'white', fontSize: '17px'}}>History</TableCell>
                           <TableCell align="left" sx={{color: 'white', fontSize: '17px'}}>Actions</TableCell>
                         </TableRow>
@@ -637,8 +683,7 @@ const [open, setOpen] = React.useState(false);
                             <TableCell align="left">{pet.age}</TableCell>
                             <TableCell align="left">{pet.gender}</TableCell>
                             <TableCell align="left">{pet.remarks}</TableCell>
-                            {/* may error kay date kaya naka comment muna ayaw mag display */}
-                            {/* <TableCell align="right">{pet.date}</TableCell>  */}
+                            <TableCell align="right">{pet.date}</TableCell> 
                             <TableCell align="center" width='35%'>{pet.healthHistory}</TableCell>
                             <TableCell align="left">
                               <IconButton sx={editStyle}>Edit<EditIcon fontSize='small'/></IconButton> 
@@ -762,7 +807,7 @@ const [open, setOpen] = React.useState(false);
             <Route path='/inquiries' element={
               <div className={!navVisible ? "page" : "page page-with-navbar"}>
                 <div>
-                  <h1>Inquiries and messages</h1>
+                  <h1>Inquiries</h1>
                 </div>
               </div>
             } />
